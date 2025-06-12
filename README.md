@@ -12,7 +12,10 @@ Evaluar las habilidades y conocimientos del candidato en temas de experiencia de
   - estructura de paquetes sugerida en la prueba
     ![Archivo pdf con prueba solicitada.](Prueba_Tecnica_Desarrollor_Full_Stack_SP.pdf)
 
+
+
 # 2. Generacion de clasess con generador openapi
+
 Se genera los diferentes vervos de http con ayuda del generador de openapi para mantener un poco el estandar de http y api rest.
 
 Se crea proyecto independiente 'OPENAPI' para despues copiar las clases generadas al proyecto 'demo' y poder tener control sobre las ellas y depurar los warnings generados.
@@ -27,4 +30,14 @@ Se crea OpenAPI Material
     - get  /material/{purchaseAt}  Consulta material filtrado por purchaseAt
     - get  /material/{city}        Consulta material filtrado por city
 
+
+
 # 3. Copia de clases generadas por 'openapi' a proyecto 'demo'
+
+Se paa las clases generadas a 'domo' en las carpetas correspondientes y se hace depuracion de la clases.
+
+- Se crea paquete 'common' para colocar las interfaces y clases compartidas por toda la app
+- Se agregas las dependencias  de swagger documentacion y las de validaciones.
+- 
+
+# 4. Creacion de JPA repository y clases de entidad para coneccion con mysqldb
