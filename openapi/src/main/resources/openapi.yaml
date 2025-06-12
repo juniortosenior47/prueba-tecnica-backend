@@ -1,0 +1,369 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: OpenAPI Material
+  license:
+    name: MIT
+servers:
+  - url: http://material.swagger.io/v1
+paths:
+  /material:
+    get:
+      summary: List all material
+      operationId: listMaterial
+      tags:
+        - material
+      responses:
+        '200':
+          description: A paged array of material
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/APIResponses"
+        
+        '400':
+            description: An object with error information
+            headers:
+              x-next:
+                description: A link to the next page of responses
+                schema:
+                  type: string
+            content:
+              application/json:    
+                schema:
+                  $ref: "#/components/schemas/APIResponses"
+        '500':
+            description: An object with error information
+            headers:
+              x-next:
+                description: A link to the next page of responses
+                schema:
+                  type: string
+            content:
+              application/json:    
+                schema:
+                  $ref: "#/components/schemas/APIResponses"
+    post:
+      summary: Create a material
+      operationId: createMaterial
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Material"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Material"
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/APIResponses"
+        '400':
+            description: An object with error information
+            headers:
+              x-next:
+                description: A link to the next page of responses
+                schema:
+                  type: string
+            content:
+              application/json:    
+                schema:
+                  $ref: "#/components/schemas/APIResponses"
+        '500':
+            description: An object with error information
+            headers:
+              x-next:
+                description: A link to the next page of responses
+                schema:
+                  type: string
+            content:
+              application/json:    
+                schema:
+                  $ref: "#/components/schemas/APIResponses"
+    put:
+      summary: Update a material
+      operationId: updateMaterial
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Material"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Material"
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/APIResponses"
+        '400':
+            description: An object with error information
+            headers:
+              x-next:
+                description: A link to the next page of responses
+                schema:
+                  type: string
+            content:
+              application/json:    
+                schema:
+                  $ref: "#/components/schemas/APIResponses"
+        '500':
+            description: An object with error information
+            headers:
+              x-next:
+                description: A link to the next page of responses
+                schema:
+                  type: string
+            content:
+              application/json:    
+                schema:
+                  $ref: "#/components/schemas/APIResponses"
+  /material/{type}:
+    get:
+      summary: Info for a specific material for type
+      operationId: showMaterialByType
+      tags:
+        - material
+      parameters:
+        - name: type
+          in: path
+          description: The id of the product to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/APIResponses"
+        '400':
+            description: An object with error information
+            headers:
+              x-next:
+                description: A link to the next page of responses
+                schema:
+                  type: string
+            content:
+              application/json:    
+                schema:
+                  $ref: "#/components/schemas/APIResponses"
+        '500':
+            description: An object with error information
+            headers:
+              x-next:
+                description: A link to the next page of responses
+                schema:
+                  type: string
+            content:
+              application/json:    
+                schema:
+                  $ref: "#/components/schemas/APIResponses"
+  /material/{purchaseAt}:
+    get:
+      summary: Info for a specific material for purchaseAt
+      operationId: showMaterialBypurchaseAt
+      tags:
+        - material
+      parameters:
+        - name: purchaseAt
+          in: path
+          description: The purchaseAt of the material to retrieve
+          required: true
+          schema:
+            type: string
+            format: date-time
+            example: '2017-07-21T17:32:28Z'
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/APIResponses"
+        '400':
+            description: An object with error information
+            headers:
+              x-next:
+                description: A link to the next page of responses
+                schema:
+                  type: string
+            content:
+              application/json:    
+                schema:
+                  $ref: "#/components/schemas/APIResponses"
+        '500':
+            description: An object with error information
+            headers:
+              x-next:
+                description: A link to the next page of responses
+                schema:
+                  type: string
+            content:
+              application/json:    
+                schema:
+                  $ref: "#/components/schemas/APIResponses"
+  /material/{city}:
+    get:
+      summary: Info for a specific material for city
+      operationId: showMaterialByCity
+      tags:
+        - material
+      parameters:
+        - name: city
+          in: path
+          description: The city of the material to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/APIResponses"
+        '400':
+            description: An object with error information
+            headers:
+              x-next:
+                description: A link to the next page of responses
+                schema:
+                  type: string
+            content:
+              application/json:    
+                schema:
+                  $ref: "#/components/schemas/APIResponses"
+        '500':
+            description: An object with error information
+            headers:
+              x-next:
+                description: A link to the next page of responses
+                schema:
+                  type: string
+            content:
+              application/json:    
+                schema:
+                  $ref: "#/components/schemas/APIResponses"
+components:
+  schemas:
+    Counties:
+      type: object
+      required:
+        - code
+        - name
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+    City:
+      type: object
+      required:
+        - counties
+        - code
+        - name
+      properties:
+        counties:
+          type: object
+          items: 
+            $ref: "#/components/schemas/Counties"
+        code:
+          type: string
+        name:
+          type: string
+    Material:
+      type: object
+      required:
+        - city
+        - name
+        - description
+        - type
+        - purchaseAt
+        - saleAt
+        - status
+      properties:
+        city:
+          type: object
+          items: 
+            $ref: "#/components/schemas/City"
+        name:
+          type: string
+        description:
+          type: string 
+        type:
+          type: string
+        purchaseAt:
+          type: string
+          format: date-time
+          example: '2017-07-21T17:32:28Z'
+        saleAt:
+          type: string
+          format: date-time
+          example: '2017-07-21T17:32:28Z'
+        status:
+          type: object
+          items: 
+            $ref: "#/components/schemas/Status"
+    Status:
+      type: string
+      enum:
+        - "ACTIVE"
+        - "AVAILABLE"
+        - "ASSIGNED"
+    Materials:
+      items:
+        $ref: "#/components/schemas/Material"
+    APIResponses:
+      type: object
+      required:
+        - code
+        - status
+        - executed
+        - data
+        - uri
+        - process
+      properties:
+        code:
+          type: string
+        status:
+          type: string
+        executed:
+          type: string
+        data:
+          type: object
+          items:
+            oneOf:
+              - $ref: "#/components/schemas/Material"
+              - $ref: "#/components/schemas/Materials"
+              - $ref: "#/components/schemas/APIMessage"
+        uri:
+          type: string
+        process:
+          type: string
+    APIMessage:
+      type: object
+      required:
+        - parameter
+        - message
+      properties:
+        parameter:
+          type: string
+        message:
+          type: string
+    
