@@ -52,3 +52,7 @@ se crean clase para administrar la coneccion de base de datos mysql y clases Api
 
 
 # 5. Creacion de logica de negocio de la api
+se crean las diferentes metodos en el las clases repository como en las calse business y ApiUtil para transformasr la info de la base de datos a la respuesta de la api.
+
+ - Se crea metodo 'listMaterial()' en 'MaterialBusines' para traer de la DB y formater respuesta.
+ - Se crea metodo 'listMaterial()' en 'MaterialController' para transportar informacion del servico 'MaterialBusines' a fuera del   api.

@@ -1,9 +1,5 @@
 package com.sysman.demo.entity;
 
-
-
-import java.time.LocalDateTime;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -15,7 +11,7 @@ public class CountiesDB {
 
     @Id
     @Column(name="id")
-    private String id;
+    private Integer id;
 
     @Column(name="code")
     private String code;
@@ -28,11 +24,11 @@ public class CountiesDB {
 
     }
 
-    public String getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

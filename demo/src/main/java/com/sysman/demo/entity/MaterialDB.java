@@ -13,7 +13,7 @@ public class MaterialDB {
 
     @Id
     @Column(name="id")
-    private String id;
+    private Integer id;
 
     @Column(name="cityID")
     private Integer cityID;
@@ -50,11 +50,11 @@ public class MaterialDB {
 
     }
 
-    public String getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

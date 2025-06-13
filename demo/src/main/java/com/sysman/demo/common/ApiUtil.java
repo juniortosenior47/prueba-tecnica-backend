@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -66,7 +67,7 @@ public class ApiUtil {
      * @param message     String
      * @return ProductErrorLogs
      */
-    public static MaterialErrorLogs toProductErrorLogs(String code, String status, String whereCaught, String parameter,
+    public static MaterialErrorLogs toMaterialErrorLogs(String code, String status, String whereCaught, String parameter,
             String message) {
         return new MaterialErrorLogs(code, status, LocalDateTime.now().toString(), whereCaught, parameter, message,
                 "/product", UUID.randomUUID().toString());
@@ -110,35 +111,67 @@ public class ApiUtil {
     }
 
     /**
-     * @param lCiDB List<CityDB> 
-     * @param lCo List<Counties>
-     * @return List<City>
-     */
-    public static List<City> toCity(List<CityDB> lCiDB,List<Counties> lCo) {
-        return lCiDB.stream().map(ciDB -> {
-            return new City(lCo.get(0), ciDB.getCode(),ciDB.getName());
-        }).collect(Collectors.toList());
-    }
-
-    /**
      * @param lCoDB List<CountiesDB>
      * @return List<Counties>
      */
     public static List<Counties> toCounties(List<CountiesDB> lCoDB) {
         return lCoDB.stream().map(coDB -> {
-            return new Counties(coDB.getCode(),coDB.getName());
+            return new Counties(coDB.getCode(), coDB.getName());
         }).collect(Collectors.toList());
     }
-   
+
+    /**
+     * @param lcoDB List<CountiesDB>
+     * @param cid   Integer
+     * @return Counties
+     */
+    public static Counties toCountiesById(List<CountiesDB> lcoDB, Integer cid) {
+        Optional<Counties> oCounties = lcoDB.stream().filter(ob -> ob.getId().equals(cid))
+                .map(ob -> new Counties(ob.getCode(), ob.getName()))
+                .findFirst();
+
+        return oCounties.get();
+    }
+
+    /**
+     * @param lciDB List<CityDB>
+     * @param lcoDB List<CountiesDB>
+     * @return List<City>
+     */
+    public static List<City> toCityBy(List<CityDB> lciDB, List<CountiesDB> lcoDB) {
+        return lciDB.stream()
+                .map(ob -> new City(toCountiesById(lcoDB, ob.getId()), ob.getCode(), ob.getName(), ob.getId()))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * @param lCi List<City> lCi
+     * @param cid Integer
+     * @return City
+     */
+    public static City toCityById(List<City> lCi, Integer cid) {
+        Optional<City> oCity = lCi.stream().filter(ob -> ob.equals(cid))
+                .findFirst();
+
+        return oCity.get();
+    }
 
     /**
      * @param lMDB List<MaterialDB>
-     * @param lCi List<City>
+     * @param lCi  List<City>
      * @return List<APIResponsesDataInner>
      */
-    public static List<APIResponsesDataInner> toMaterial(List<MaterialDB> lMDB, List<City> lCi) {
+    public static List<Material> toMaterialBy(List<MaterialDB> lMDB, List<CityDB> lciDB, List<CountiesDB> lcoDB) {
+        List<City> lCi = toCityBy(lciDB, lcoDB);
         return lMDB.stream().map(mDB -> {
-            return new Material(lCi.get(0), mDB.getName(),mDB.getDescription(),mDB.getType(),Date.from(mDB.getPurchaseAt().atZone(ZoneId.systemDefault()).toInstant()),Date.from(mDB.getSaleAt().atZone(ZoneId.systemDefault()).toInstant()),mDB.getStatus());
+            return new Material(toCityById(lCi, mDB.getCityID()), mDB.getName(), mDB.getDescription(), mDB.getType(),
+                    Date.from(mDB.getPurchaseAt().atZone(ZoneId.systemDefault()).toInstant()),
+                    Date.from(mDB.getSaleAt().atZone(ZoneId.systemDefault()).toInstant()), mDB.getStatus());
         }).collect(Collectors.toList());
     }
+
+    
+
+    
+
 }

@@ -1,6 +1,8 @@
 package com.sysman.demo.model;
 
 import java.util.Objects;
+import java.util.Optional;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 //import java.util.ArrayList;
 //import java.util.List;
@@ -20,6 +22,8 @@ public class City {
   @Valid
   private com.sysman.demo.model.Counties counties = new com.sysman.demo.model.Counties();
 
+  private Integer id;
+  
   private String code;
 
   private String name;
@@ -31,10 +35,11 @@ public class City {
   /**
    * Constructor with only required parameters
    */
-  public City(com.sysman.demo.model.Counties counties, String code, String name) {
+  public City(com.sysman.demo.model.Counties counties, String code, String name, Integer id) {
     this.counties = counties;
     this.code = code;
     this.name = name;
+    this.id = id;
   }
 
   public City counties(com.sysman.demo.model.Counties counties) {
@@ -42,6 +47,13 @@ public class City {
     return this;
   }
 
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
   /* public City addCountiesItem(Counties countiesItem) {
     if (this.counties == null) {
       this.counties = new com.sysman.demo.model.Counties();

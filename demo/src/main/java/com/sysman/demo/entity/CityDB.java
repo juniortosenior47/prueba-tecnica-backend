@@ -12,11 +12,10 @@ public class CityDB {
 
     @Id
     @Column(name="id")
-    private String id;
+    private Integer id;
 
     @Column(name="countiesID")
-    private Integer counties;
-
+    private Integer countiesID;
 
     @Column(name="code")
     private String code;
@@ -29,13 +28,22 @@ public class CityDB {
 
     }
 
-    public String getId() {
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
+
+    public Integer getCountiesID() {
+        return countiesID;
+    }
+
+    public void setCountiesID(Integer countiesID) {
+        this.countiesID = countiesID;
+    }
+
 
     public String getCode() {
         return code;
