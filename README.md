@@ -60,3 +60,7 @@ se crean las diferentes metodos en el las clases repository como en las calse bu
    - # 5.1 Se realiza prueba del metodo listMaterial y desde postman 'http://localhost:8080/material'
     - Se cra scrip para las tabas y datos de prueba en mysql en archivo ![Archivo sql con scripts.](script.sql)
     - Se crea consulta postman para validar servicio ![Archivo json con pruebas postman.](prueba-tecnica-backend.postman_collection.json)
+
+
+# 6. Creacion de un administrador de excenciones.
+  - se crea Clase 'GlobalExceptionHandler' para administrar y responder por cada exepcion administrada.
