@@ -5,9 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sysman.demo.decorator.EnumValidator;
 import com.sysman.demo.decorator.Status;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
@@ -192,14 +190,7 @@ public class Material implements APIResponsesDataInner {
     return this;
   }
 
-  /* public Material addStatusItem(Status statusItem) {
-    if (this.status == null) {
-      this.status = new ArrayList<>();
-    }
-    this.status.add(statusItem);
-    return this;
-  } */
-
+  
   /**
    * Get status
    * @return status

@@ -56,3 +56,7 @@ se crean las diferentes metodos en el las clases repository como en las calse bu
 
  - Se crea metodo 'listMaterial()' en 'MaterialBusines' para traer de la DB y formater respuesta.
  - Se crea metodo 'listMaterial()' en 'MaterialController' para transportar informacion del servico 'MaterialBusines' a fuera del   api.
+ 
+   - # 5.1 Se realiza prueba del metodo listMaterial y desde postman 'http://localhost:8080/material'
+    - Se cra scrip para las tabas y datos de prueba en mysql en archivo ![Archivo sql con scripts.](script.sql)
+    - Se crea consulta postman para validar servicio ![Archivo json con pruebas postman.](prueba-tecnica-backend.postman_collection.json)

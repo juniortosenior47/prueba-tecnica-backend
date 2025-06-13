@@ -13,7 +13,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceUnit;
 import jakarta.persistence.Query;
-import jakarta.persistence.TypedQuery;
+
 
 @Service
 public class MysqlHandler {
@@ -31,12 +31,13 @@ public class MysqlHandler {
     /**
      * @return List<MaterialDB>
      */
+    @SuppressWarnings("unchecked")
     public List<MaterialDB> allMaterial() {
         EntityManager eM = this.getEntityManagerFactory().createEntityManager();
         List<MaterialDB> lMDB = new ArrayList<MaterialDB>();
         try {
             eM.getTransaction().begin();
-            TypedQuery<MaterialDB> query = eM.createQuery("select mdb from MaterialBD mdb",
+            Query query = eM.createNativeQuery("select * from material",
                     MaterialDB.class);
             lMDB = query.getResultList();
             eM.getTransaction().commit();
@@ -46,7 +47,6 @@ public class MysqlHandler {
         } catch (Exception e) {
             eM.getTransaction().rollback();
             eM.close();
-
             return lMDB;
 
         } finally {
@@ -66,7 +66,7 @@ public class MysqlHandler {
         List<CityDB> lCiDB = new ArrayList<CityDB>();
         try {
             eM.getTransaction().begin();
-            Query query = eM.createNativeQuery("select * from City where IN(:ids)",
+            Query query = eM.createNativeQuery("select * from city where city.id IN(:ids)",
                     CityDB.class);
             query.setParameter("ids", lID);
             lCiDB =  query.getResultList();
@@ -77,7 +77,6 @@ public class MysqlHandler {
         } catch (Exception e) {
             eM.getTransaction().rollback();
             eM.close();
-
             return lCiDB;
 
         } finally {
@@ -97,8 +96,8 @@ public class MysqlHandler {
         List<CountiesDB> lCoDB = new ArrayList<CountiesDB>();
         try {
             eM.getTransaction().begin();
-            Query query = eM.createNativeQuery("select * from City where IN(:ids)",
-                    CityDB.class);
+            Query query = eM.createNativeQuery("select * from counties where  counties.id IN(:ids)",
+                    CountiesDB.class);
             query.setParameter("ids", lID);
             lCoDB =  query.getResultList();
             eM.getTransaction().commit();
@@ -108,7 +107,6 @@ public class MysqlHandler {
         } catch (Exception e) {
             eM.getTransaction().rollback();
             eM.close();
-
             return lCoDB;
 
         } finally {

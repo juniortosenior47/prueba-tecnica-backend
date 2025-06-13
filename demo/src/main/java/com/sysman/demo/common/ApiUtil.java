@@ -67,7 +67,8 @@ public class ApiUtil {
      * @param message     String
      * @return ProductErrorLogs
      */
-    public static MaterialErrorLogs toMaterialErrorLogs(String code, String status, String whereCaught, String parameter,
+    public static MaterialErrorLogs toMaterialErrorLogs(String code, String status, String whereCaught,
+            String parameter,
             String message) {
         return new MaterialErrorLogs(code, status, LocalDateTime.now().toString(), whereCaught, parameter, message,
                 "/product", UUID.randomUUID().toString());
@@ -150,10 +151,14 @@ public class ApiUtil {
      * @return City
      */
     public static City toCityById(List<City> lCi, Integer cid) {
-        Optional<City> oCity = lCi.stream().filter(ob -> ob.equals(cid))
-                .findFirst();
-
-        return oCity.get();
+        City valor = new City();
+        for (City item : lCi) {
+            if (item.getId() == cid) {
+                valor = item;
+                break;
+            }
+        }
+        return valor;
     }
 
     /**
@@ -169,9 +174,5 @@ public class ApiUtil {
                     Date.from(mDB.getSaleAt().atZone(ZoneId.systemDefault()).toInstant()), mDB.getStatus());
         }).collect(Collectors.toList());
     }
-
-    
-
-    
 
 }

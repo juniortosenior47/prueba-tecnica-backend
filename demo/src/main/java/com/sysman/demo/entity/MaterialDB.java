@@ -35,10 +35,10 @@ public class MaterialDB {
     @Column(name="type")
     private String type;
 
-    @Column(name="purchaseAt")
+    @Column(name="purchaseat")
     private LocalDateTime purchaseAt;
 
-    @Column(name="saleAt")
+    @Column(name="saleat")
     private LocalDateTime saleAt;
 
     @Column(name="status")

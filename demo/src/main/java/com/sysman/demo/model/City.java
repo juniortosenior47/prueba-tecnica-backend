@@ -1,7 +1,6 @@
 package com.sysman.demo.model;
 
 import java.util.Objects;
-import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 //import java.util.ArrayList;
@@ -54,14 +53,7 @@ public class City {
   public void setId(Integer id) {
     this.id = id;
   }
-  /* public City addCountiesItem(Counties countiesItem) {
-    if (this.counties == null) {
-      this.counties = new com.sysman.demo.model.Counties();
-    }
-    this.counties.add(countiesItem);
-    return this;
-  } */
-
+  
   /**
    * Get counties
    * @return counties
