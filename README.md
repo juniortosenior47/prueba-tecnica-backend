@@ -38,6 +38,17 @@ Se paa las clases generadas a 'domo' en las carpetas correspondientes y se hace 
 
 - Se crea paquete 'common' para colocar las interfaces y clases compartidas por toda la app
 - Se agregas las dependencias  de swagger documentacion y las de validaciones.
-- 
+ 
+
 
 # 4. Creacion de JPA repository y clases de entidad para coneccion con mysqldb
+se crean clase para administrar la coneccion de base de datos mysql y clases ApiUtil donde se crearan funcionalidase para ayuadar a convertir la data que proviene de la base de datos a los dto que se enviaran en la respuesta de la api.
+
+- Se crea administador de jpa para MySQL
+- Se crea ApiUtil
+- Se comienza con logica de negocio para extraer data y pasarla al controlador
+- se crea un decorador '@EnumValidator' para validar campo 'Status' de la DTO 'Material'
+
+
+
+# 5. Creacion de logica de negocio de la api

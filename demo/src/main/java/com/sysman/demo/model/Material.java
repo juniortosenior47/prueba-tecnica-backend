@@ -2,6 +2,9 @@ package com.sysman.demo.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sysman.demo.decorator.EnumValidator;
+import com.sysman.demo.decorator.Status;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +25,7 @@ import jakarta.annotation.Generated;
 public class Material implements APIResponsesDataInner {
 
   @Valid
-  private List<com.sysman.demo.model.City> city = new ArrayList<>();
+  private com.sysman.demo.model.City city;
 
   private String name;
 
@@ -36,8 +39,8 @@ public class Material implements APIResponsesDataInner {
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private Date saleAt;
 
-  @Valid
-  private List<Status> status = new ArrayList<>();
+  @EnumValidator(enumClass = Status.class, message = "Invalid status")
+  private String status;
 
   public Material() {
     super();
@@ -46,7 +49,7 @@ public class Material implements APIResponsesDataInner {
   /**
    * Constructor with only required parameters
    */
-  public Material(List<com.sysman.demo.model.City> city, String name, String description, String type, Date purchaseAt, Date saleAt, List<Status> status) {
+  public Material(com.sysman.demo.model.City city, String name, String description, String type, Date purchaseAt, Date saleAt, String status) {
     this.city = city;
     this.name = name;
     this.description = description;
@@ -56,18 +59,18 @@ public class Material implements APIResponsesDataInner {
     this.status = status;
   }
 
-  public Material city(List<com.sysman.demo.model.City> city) {
+  public Material city(com.sysman.demo.model.City city) {
     this.city = city;
     return this;
   }
 
-  public Material addCityItem(City cityItem) {
+  /* public Material addCityItem(City cityItem) {
     if (this.city == null) {
       this.city = new ArrayList<>();
     }
     this.city.add(cityItem);
     return this;
-  }
+  } */
 
   /**
    * Get city
@@ -76,11 +79,11 @@ public class Material implements APIResponsesDataInner {
   @NotNull @Valid 
   @Schema(name = "city", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("city")
-  public List<com.sysman.demo.model.City> getCity() {
+  public com.sysman.demo.model.City getCity() {
     return city;
   }
 
-  public void setCity(List<com.sysman.demo.model.City> city) {
+  public void setCity(com.sysman.demo.model.City city) {
     this.city = city;
   }
 
@@ -184,18 +187,18 @@ public class Material implements APIResponsesDataInner {
     this.saleAt = saleAt;
   }
 
-  public Material status(List<Status> status) {
+  public Material status(String status) {
     this.status = status;
     return this;
   }
 
-  public Material addStatusItem(Status statusItem) {
+  /* public Material addStatusItem(Status statusItem) {
     if (this.status == null) {
       this.status = new ArrayList<>();
     }
     this.status.add(statusItem);
     return this;
-  }
+  } */
 
   /**
    * Get status
@@ -204,11 +207,11 @@ public class Material implements APIResponsesDataInner {
   @NotNull @Valid 
   @Schema(name = "status", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("status")
-  public List<Status> getStatus() {
+  public String getStatus() {
     return status;
   }
 
-  public void setStatus(List<Status> status) {
+  public void setStatus(String status) {
     this.status = status;
   }
 

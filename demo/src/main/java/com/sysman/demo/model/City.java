@@ -2,8 +2,8 @@ package com.sysman.demo.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -18,7 +18,7 @@ import jakarta.annotation.Generated;
 public class City {
 
   @Valid
-  private List<com.sysman.demo.model.Counties> counties = new ArrayList<>();
+  private com.sysman.demo.model.Counties counties = new com.sysman.demo.model.Counties();
 
   private String code;
 
@@ -31,24 +31,24 @@ public class City {
   /**
    * Constructor with only required parameters
    */
-  public City(List<com.sysman.demo.model.Counties> counties, String code, String name) {
+  public City(com.sysman.demo.model.Counties counties, String code, String name) {
     this.counties = counties;
     this.code = code;
     this.name = name;
   }
 
-  public City counties(List<com.sysman.demo.model.Counties> counties) {
+  public City counties(com.sysman.demo.model.Counties counties) {
     this.counties = counties;
     return this;
   }
 
-  public City addCountiesItem(Counties countiesItem) {
+  /* public City addCountiesItem(Counties countiesItem) {
     if (this.counties == null) {
-      this.counties = new ArrayList<>();
+      this.counties = new com.sysman.demo.model.Counties();
     }
     this.counties.add(countiesItem);
     return this;
-  }
+  } */
 
   /**
    * Get counties
@@ -57,11 +57,11 @@ public class City {
   @NotNull @Valid 
   @Schema(name = "counties", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("counties")
-  public List<com.sysman.demo.model.Counties> getCounties() {
+  public com.sysman.demo.model.Counties getCounties() {
     return counties;
   }
 
-  public void setCounties(List<com.sysman.demo.model.Counties> counties) {
+  public void setCounties(com.sysman.demo.model.Counties counties) {
     this.counties = counties;
   }
 
